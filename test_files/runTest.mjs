@@ -2,7 +2,7 @@ import fs from "fs";
 import url from "url";
 import path from "path";
 import chalk from "chalk";
-import request from "request";
+import fetch  from "node-fetch";
 import logSymbols from "log-symbols";
 
 // Globals
@@ -139,26 +139,36 @@ const runTest = function(test_file_name) {
 		utils: utils_data,
 	});
 
-	return new Promise(function (resolve) {
-		request.post(
-			request_url,
-			{ json: true, body: { payload: payloadData } },
-			function (err, res, body) {
-				if (!err && res.statusCode === 200) {
-					log(chalk.greenBright(logSymbols.success, "Server Response Received"));
-					if (body.status === 0) {
-						handleSuccess(input, body, test_file_name);
-					} else {
-						handleError(input, body);
-					}
-					resolve();
-				} else {
-					log(chalk.redBright(logSymbols.error, "No Server Response"));
-					log(err);
-					resolve();
-				}
+
+	return new Promise(function(resolve) {
+		fetch(request_url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ payload: payloadData })
+		})
+		.then(res => {
+			if (res.ok) {
+				return res.json();
+			} else {
+				throw new Error('No Server Response');
 			}
-		);
+		})
+		.then(body => {
+			log(chalk.greenBright(logSymbols.success, "Server Response Received"));
+			if (body.status === 0) {
+				handleSuccess(input, body, test_file_name);
+			} else {
+				handleError(input, body);
+			}
+			resolve();
+		})
+		.catch(err => {
+			log(chalk.redBright(logSymbols.error, "No Server Response"));
+			log(err);
+			resolve();
+		});
 	});
 }
 

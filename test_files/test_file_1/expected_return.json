@@ -1,1 +1,32 @@
-{"Sum":{"value":120,"info":"Simple summation "},"Area":{"value":3200,"info":"Give more details on your result","unit":"mm <sup>2</sup>"},"i_y":{"label":"I<sub>Y</sub>, Moment of Inertia","value":1706666.667,"unit":"mm <sup>4</sup>","info":"Moment of Inertia of your Section"},"sub_heading_1":{"unit":"heading","label":"UTILITY RATIOS"},"utility_ratio_1":{"label":"Utility Ratio 1","value":0.555,"unit":"utility","info":"If your type == utility, it will automatically display PASS/FAIL"},"Utility Ratio 2":{"value":1.555,"unit":"utility","info":"If your type == utility, it will automatically display PASS/FAIL"}}
+{
+    "Sum": {
+        "value": 120,
+        "info": "Simple summation "
+    },
+    "Area": {
+        "value": 3200,
+        "info": "Give more details on your result",
+        "unit": "mm <sup>2</sup>"
+    },
+    "i_y": {
+        "label": "I<sub>Y</sub>, Moment of Inertia",
+        "value": 1706666.67,
+        "unit": "mm <sup>4</sup>",
+        "info": "Moment of Inertia of your Section"
+    },
+    "sub_heading_1": {
+        "unit": "heading",
+        "label": "UTILITY RATIOS"
+    },
+    "utility_ratio_1": {
+        "label": "Utility Ratio 1",
+        "value": 0.555,
+        "unit": "utility",
+        "info": "If your type == utility, it will automatically display PASS/FAIL"
+    },
+    "Utility Ratio 2": {
+        "value": 1.555,
+        "unit": "utility",
+        "info": "If your type == utility, it will automatically display PASS/FAIL"
+    }
+}

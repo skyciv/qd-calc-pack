@@ -10,7 +10,7 @@
     },
     "i_y": {
         "label": "I<sub>Y</sub>, Moment of Inertia",
-        "value": 2133333.333,
+        "value": 2133333.33,
         "unit": "mm <sup>4</sup>",
         "info": "Moment of Inertia of your Section"
     },

@@ -1,5 +1,5 @@
 const fs = require('fs');
-const request = require('request');
+const axios = require('axios');
 
 // Globals
 const log = console.log;
@@ -97,27 +97,35 @@ const runTest = function(test_file_name) {
 		key: api_credentials["key"]
 	});
 
-	return new Promise(function (resolve) {
-		request.post(
-			request_url,
-			{ json: true, body: { payload: payloadData } },
-			function (err, res, body) {
-				if (!err && res.statusCode === 200) {
-					log("Server Response Received");
-					if (body.status === 0) {
-						handleSuccess(input, body, test_file_name);
-					} else {
-						handleError(input, body);
-					}
-					resolve();
-				} else {
-					log("No Server Response");
-					log("Please check you have included the correct API credentials in api_credentials.json");
-					log(err);
-					resolve();
-				}
+
+	return new Promise(function(resolve) {
+		axios.post(request_url, { payload: payloadData }, {
+			headers: {
+				'Content-Type': 'application/json'
 			}
-		);
+		})
+		.then(res => {
+			if (res.status === 200) {
+				return res.data;
+			} else {
+				throw new Error('No Server Response');
+			}
+		})
+		.then(body => {
+			console.log("Server Response Received");
+			if (body.status === 0) {
+				handleSuccess(input, body, test_file_name);
+			} else {
+				handleError(input, body);
+			}
+			resolve();
+		})
+		.catch(err => {
+			console.log("No Server Response");
+			console.log("Please check you have included the correct API credentials in api_credentials.json");
+			console.log(err);
+			resolve();
+		});
 	});
 }
 

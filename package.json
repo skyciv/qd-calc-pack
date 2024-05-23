@@ -17,8 +17,9 @@
   },
   "homepage": "https://github.com/skyciv/qd-calc-pack-template#readme",
   "dependencies": {
-    "chalk": "^4.1.2",
-    "log-symbols": "^5.1.0",
-    "request": "^2.88.2"
+    "chalk": "^5.3.0",
+    "log-symbols": "^6.0.0",
+    "node-fetch": "^3.3.2",
+    "axios": "1.7.2"
   }
 }
